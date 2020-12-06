@@ -7,5 +7,6 @@ if (resolve('/?')){
 } elseif (resolve('/contatos/?')) {
     render('contatos', '/site/contatos');
 } else {
+    http_response_code(404);
     echo 'Página não encontrada';
 }
