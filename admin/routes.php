@@ -3,9 +3,9 @@
 // A interrogação no fim da url é para definir o trailing slash
 
 if (resolve_path('/admin/?')){
-    echo 'Administração';
+    render('/admin/home', 'admin');
 } elseif (resolve_path('/admin/pages/?')) {
-    echo 'Administração de Páginas';
+    render('admin/pages', 'admin');
 } else {
     echo 'Página não encontrada';
 }

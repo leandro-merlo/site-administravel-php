@@ -3,9 +3,9 @@
 // A interrogação no fim da url é para definir o trailing slash
 
 if (resolve_path('/?')){
-    echo 'Home';
+    render('home', '/site/home');
 } elseif (resolve_path('/contatos/?')) {
-    echo 'Página de contatos';
+    render('contatos', '/site/contatos');
 } else {
     echo 'Página não encontrada';
 }
