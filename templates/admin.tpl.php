@@ -7,6 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css" >
+    <!-- Trix CSS -->
+    <link rel="stylesheet" href="/resources/trix.css" >
 
     <link rel="stylesheet" href="/css/style.css" >
 
@@ -45,5 +47,6 @@
 
     <script src="/js/jquery.slim.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js" ></script>
+    <script src="/resources/trix.js" ></script>
   </body>
 </html>
