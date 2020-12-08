@@ -30,6 +30,10 @@ html, body {
     padding-top: 20px;
 }
 
+#content h3:first-child {
+    margin-bottom: 40px;
+}
+
 trix-editor {
     min-height: 250px;
 }

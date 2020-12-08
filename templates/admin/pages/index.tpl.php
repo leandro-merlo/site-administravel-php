@@ -12,7 +12,7 @@
         <tr>
             <td>1</td>
             <td><a href="/admin/pages/1">Página Inicial</a></td>
-            <td class="text-right"><a href="/admin/pages/1/edit" class="btn btn-primary btn-sm">ver</a></td>
+            <td class="text-right"><a href="/admin/pages/1" class="btn btn-primary btn-sm">ver</a></td>
         </tr>
     </tbody>
 </table>
