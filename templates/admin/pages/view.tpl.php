@@ -23,6 +23,6 @@
 </div>
 <p>
     <a href="/admin/pages/1/edit" class="btn btn-primary">Editar</a>
-    <a href="/admin/pages/1/delete" class="btn btn-danger">Remover</a>
+    <a href="/admin/pages/1/delete" class="btn btn-danger confirm">Remover</a>
 </p>
 <a class="btn btn-secondary" href="/admin/pages">Voltar</a>

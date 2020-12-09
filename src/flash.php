@@ -1,8 +1,8 @@
 <?php
 
-function flash($message = null, $type = null) {
+function flash($message = null, $title = "Nota", $type = "notice") {
     if ($message) {
-        $_SESSION['flash'][] = compact('message', 'type');        
+        $_SESSION['flash'][] = compact('message', 'type', 'title');        
     } else {
         $flash = $_SESSION['flash'] ?? [];
         foreach($flash as $key => $message){
