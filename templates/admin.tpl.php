@@ -48,5 +48,8 @@
     <script src="/js/jquery.slim.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js" ></script>
     <script src="/resources/trix.js" ></script>
+    <script>
+        <?php flash() ?>
+    </script>
   </body>
 </html>

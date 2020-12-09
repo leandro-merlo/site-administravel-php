@@ -1,6 +1,6 @@
 <h3>Edição de Página</h3>
 
-<form action="" method="POST">
+<form method="POST">
     <div class="form-group">
         <label for="pagesTitle">Título</label>
         <input id="pagesTitle" name="title" type="text" class="form-control" placeholder="Digite o título da página..." required value="Página Inicial">

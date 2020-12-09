@@ -1,0 +1,1 @@
+alert('<?php echo $data['message'] . ' - ' . $data['type'] ?>');

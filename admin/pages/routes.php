@@ -9,6 +9,7 @@ if (resolve('/admin/pages/?')) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pages_create();
         header('location: /admin/pages/');
+        return;
     }
     render('admin/pages/create', 'admin');
 } elseif ($params = resolve('/admin/pages/(\d+)/?')) {
@@ -19,13 +20,16 @@ if (resolve('/admin/pages/?')) {
     $id = $params[1];
     $page = $pages_one($id);
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $pages_edit($id);
         header("location: /admin/pages/{$id}");
+        return;
     }
     render('admin/pages/edit', 'admin', compact('page'));
 } elseif ($params = resolve('/admin/pages/(\d+)/delete/?')) {
     $id = $params[1];
     $pages_delete($id);
     header('location: /admin/pages/');
+    return;
 } else {
     http_response_code(404);
     echo 'Página não encontrada';
