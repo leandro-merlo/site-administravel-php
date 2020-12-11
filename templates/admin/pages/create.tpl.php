@@ -11,13 +11,13 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">/</span>                
             </div>
-            <input id="pagesSlug" name="slug" type="text" class="form-control" placeholder="Digite o slug, ou deixe em branco para página inicial..." required>
+            <input id="pagesSlug" name="url" type="text" class="form-control" placeholder="Digite o slug, ou deixe em branco para página inicial...">
         </div>
     </div>
     <div class="form-group">
         <label for="pagesBody">Conteúdo</label>
-        <input id="pagesBody" name="body" value="Edite o conteúdo da página" type="hidden">
-        <trix-editor input="pagesBody"></trix-editor>        
+        <input id="pagesBody" name="body" value="" type="hidden">
+        <trix-editor input="pagesBody" placeholder="Edite o conteúdo da página"></trix-editor>        
     </div>
     <button type="submit" class="btn btn-primary">Salvar</button>
 </form>
