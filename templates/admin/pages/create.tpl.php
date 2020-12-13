@@ -24,4 +24,4 @@
 
 <hr />
 
-<a class="btn btn-secondary" href="/admin">Voltar</a>
+<a class="btn btn-secondary" href="/admin/pages">Voltar</a>
