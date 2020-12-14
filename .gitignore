@@ -54,3 +54,5 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/linux,windows,vscode
 
 config.php
+
+public/upload/*
