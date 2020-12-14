@@ -14,17 +14,17 @@ if (resolve('/admin/users/?')) {
     render('admin/users/create', 'admin');
 } elseif ($params = resolve('/admin/users/(\d+)/?')) {
     $id = $params[1];
-    $page = $users_one($id);
-    render('admin/users/view', 'admin', compact('page'));
+    $user = $users_one($id);
+    render('admin/users/view', 'admin', compact('user'));
 } elseif ($params = resolve('/admin/users/(\d+)/edit/?')) {
     $id = $params[1];
-    $page = $users_one($id);
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $users_edit($id);
         header("location: /admin/users/{$id}");
         return;
     }
-    render('admin/users/edit', 'admin', compact('page'));
+    $user = $users_one($id);
+    render('admin/users/edit', 'admin', compact('user'));
 } elseif ($params = resolve('/admin/users/(\d+)/delete/?')) {
     $id = $params[1];
     $users_delete($id);

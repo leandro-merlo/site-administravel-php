@@ -3,7 +3,7 @@
 <form action="" method="POST">
     <div class="form-group">
         <label for="usersEmal">E-mail</label>
-        <input id="usersEmal" name="email" type="email" class="form-control" placeholder="Digite seu email..." required>
+        <input id="usersEmal" name="email" type="email" class="form-control" placeholder="Digite seu email..." required value="<?php echo $data['user']['email']?>">
     </div>
     <div class="form-group">
         <label for="usersPassword">Senha</label>
@@ -14,4 +14,4 @@
 
 <hr />
 
-<a class="btn btn-secondary" href="/admin/users/1">Voltar</a>
+<a class="btn btn-secondary" href="/admin/users/<?php echo $data['user']['id']?>">Voltar</a>

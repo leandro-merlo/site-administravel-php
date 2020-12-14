@@ -1,14 +1,23 @@
 <?php
 
-function get_users_data($redirectOnError) {
+function get_users_data($redirectOnError, $editMode=false) {
     $email = filter_input(INPUT_POST, 'email');
     $password = filter_input(INPUT_POST, 'password');
 
-    if (is_null($email) or is_null($password)){
-        flash('Os campos email e senha devem ser informados!', 'Error', 'error');
-        header("location: {$redirectOnError}");
-        die;
+    if (!$editMode) {
+        if (!$email or !$password){
+            flash('Os campos email e senha devem ser informados!', 'Erro', 'error');
+            header("location: {$redirectOnError}");
+            die;
+        }
+    } else {
+        if (!$email){
+            flash('O campo email deve ser informado!', 'Erro', 'error');
+            header("location: {$redirectOnError}");
+            die;
+        }
     }
+
 
     return compact('email', 'password');
 }
@@ -42,11 +51,24 @@ $users_create = function() use ($conn) {
 };
 
 $users_edit = function($id) use ($conn) {
-    $data = get_users_data("/admin/users/{$id}/edit");
-    $sql = 'UPDATE users SET title=?, url=?, body=?, updated_at=NOW() WHERE id = ?';
+    $data = get_users_data("/admin/users/{$id}/edit", true);
+    $sql = 'UPDATE users SET email=?, updated_at=NOW() WHERE id = ?';
+    $bind = 'si';
+    $password = null;
+
+    if ($data['password']) {
+        $password = password_hash($data['password'], PASSWORD_BCRYPT);
+        $sql = 'UPDATE users SET email=?, password=?, updated_at=NOW() WHERE id = ?';
+        $bind = 'ssi';
+    }
+
     $stmt = $conn->prepare($sql);
 
-    $stmt->bind_param('sssi', $data['title'], $data['url'], $data['body'], $id);
+    if ($data['password']) {
+        $stmt->bind_param($bind, $data['email'], $password, $id);
+    } else {
+        $stmt->bind_param($bind, $data['email'], $id);
+    }
     $stmt->execute();
 
     flash('Registro atualizado com sucesso!', 'Sucesso', 'success');
