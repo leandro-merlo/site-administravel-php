@@ -1,17 +1,16 @@
 <?php
 
 function get_users_data($redirectOnError) {
-    $title = filter_input(INPUT_POST, 'title');
-    $body = filter_input(INPUT_POST, 'body');
-    $url = filter_input(INPUT_POST, 'url');
+    $email = filter_input(INPUT_POST, 'email');
+    $password = filter_input(INPUT_POST, 'password');
 
-    if (is_null($title)){
-        flash('Os campos título deve ser informado!', 'Error', 'error');
+    if (is_null($email) or is_null($password)){
+        flash('Os campos email e senha devem ser informados!', 'Error', 'error');
         header("location: {$redirectOnError}");
         die;
     }
 
-    return compact('title', 'url', 'body');
+    return compact('email', 'password');
 }
 
 $users_all = function() use ($conn) {
@@ -30,10 +29,13 @@ $users_one = function($id) use ($conn) {
 
 $users_create = function() use ($conn) {
     $data = get_users_data('/admin/users/create');
-    $sql = 'INSERT INTO users (title, url, body, created_at, updated_at) VALUES (?, ?, ?, NOW(), NOW())';
+
+
+    $sql = 'INSERT INTO users (email, password, created_at, updated_at) VALUES (?, ?, NOW(), NOW())';
     $stmt = $conn->prepare($sql);
 
-    $stmt->bind_param('sss', $data['title'], $data['url'], $data['body']);
+    $password = password_hash($data['password'], PASSWORD_BCRYPT);
+    $stmt->bind_param('ss', $data['email'], $password);
     $stmt->execute();
 
     flash('Registro criado com sucesso!', 'Sucesso', 'success');
