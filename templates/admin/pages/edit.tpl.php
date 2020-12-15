@@ -16,7 +16,7 @@
     </div>
     <div class="form-group">
         <label for="pagesBody">Conteúdo</label>
-        <input id="pagesBody" name="body" type="hidden" value="<?php echo $data['page']['body']?>">
+        <input id="pagesBody" name="body" type="hidden" value="<?php echo htmlspecialchars($data['page']['body'] )?>">
         <trix-editor input="pagesBody" placeholder="Edite o conteúdo da página"></trix-editor>        
     </div>
     <button type="submit" class="btn btn-primary">Salvar</button>
@@ -24,5 +24,4 @@
 
 <hr />
 
-<a class="btn btn-secondary" href="/admin/pages/1">Voltar</a>
-
+<a class="btn btn-secondary" href="/admin/pages/<?php echo $data['page']['id']?>">Voltar</a>

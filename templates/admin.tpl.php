@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/resources/pnotify/pnotify.brighttheme.css" >
     <link rel="stylesheet" href="/resources/pnotify/pnotify.buttons.css" >
     <link rel="stylesheet" href="/resources/pnotify/pnotify.mobile.css" >
+    <link rel="stylesheet" href="/css/font-awesome.min.css" >
 
     <link rel="stylesheet" href="/css/style.css" >
 
@@ -34,13 +35,13 @@
                         <span class="nav-link text-white-50"><small>MENU</small></span>
                     </li>
                     <li class="nav-item">
-                        <a href="/" class="nav-link active">Home</a>
+                        <a href="/admin" class="nav-link"><i class="fa fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/users" class="nav-link">Usuários</a>
+                        <a href="/admin/users" class="nav-link"><i class="fa fa-user"></i> Usuários</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/pages" class="nav-link">Páginas</a>
+                        <a href="/admin/pages" class="nav-link"><i class="fa fa-file-text-o"></i> Páginas</a>
                     </li>                    
                 </ul>
             </div>
@@ -57,6 +58,22 @@
     <script src="/resources/pnotify/pnotify.mobile.js" ></script>
     <script src="/resources/pnotify/pnotify.buttons.js" ></script>
     <script>
+
+        const menu = document.querySelectorAll('#main-menu .nav-link');
+        menu.forEach(element => {
+            const pathname = window.location.pathname.replace(/\/$/, "");;
+            var href = element.getAttribute('href');
+            if (pathname === '/admin') {
+                if (pathname === href) {
+                    element.className = element.className + " active";
+                }
+            } else {
+                if (pathname.startsWith(href) && href !== '/admin') {
+                    element.className = element.className + " active";
+                }                
+            }
+        });
+
 
         document.addEventListener('trix-attachment-add', function(event){
             const attachment = event.attachment;
