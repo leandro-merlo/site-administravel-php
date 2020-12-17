@@ -2,6 +2,8 @@
 
 // A interrogação no fim da url é para definir o trailing slash
 
+auth_protection();
+
 if (resolve('/admin/?')){
     render('/admin/home', 'admin');
 } elseif (resolve('/admin/pages/?.*')) {
