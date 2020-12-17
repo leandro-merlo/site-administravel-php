@@ -1,9 +1,16 @@
 <?php
 
 
-function setInternalServerError($errno, $errstr, $errfile, $errline){
+function setInternalServerError($errno, $errstr =null, $errfile=null, $errline=null){
     http_response_code(500);
     echo "<h1>Erro</h1>";
+var_dump($errno);die;
+    if (is_object($errno)){
+        $errstr = $errno->getMessage();
+        $errfile = $errno->getFile();
+        $errline = $errno->getLine();
+        $errno = $errno->getCode();
+    }
 
     if (CONFIG['ENVIRONMENT'] === 'production') {
         exit;
@@ -23,7 +30,7 @@ function setInternalServerError($errno, $errstr, $errfile, $errline){
             echo '<strong>NOTA</strong> [' . $errno . '] ' . $errstr . '<br />';
             break;
         default:
-            echo '<strong>Erro de tipo desconhecido</strong> [' . $errno . '] ' . $errstr . '<br />';
+            echo '<strong>Erro de tipo desconhecido</strong> [' . $errno . '] ' . $errstr . ' - ' . $errfile . '<br />';
     }
 
     echo "</span>";
