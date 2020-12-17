@@ -8,6 +8,8 @@ if (resolve('/admin/?')){
     require_once __DIR__ . '/pages/routes.php';
 } elseif (resolve('/admin/users/?.*')) {
     require_once __DIR__ . '/users/routes.php';
+} elseif (resolve('/admin/auth/?.*')) {
+    require_once __DIR__ . '/auth/routes.php';
 } elseif (resolve('/admin/upload/image/?')) {
     $file = $_FILES['file'];
     if (!$file) {

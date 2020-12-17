@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -22,9 +22,12 @@
   </head>
   <body class="d-flex flex-column">
     <div id="header">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a href="" class="navbar-brand">Admin</a>
-            <span class="navbar-text">Painel Administrativo</span>
+        <nav class="navbar navbar-dark bg-dark">
+            <span>
+                <a href="" class="navbar-brand">Admin</a>
+                <span class="navbar-text">Painel Administrativo</span>            
+            </span>
+            <a href="/admin/auth/logout" class="btn btn-danger"><i class="fa fa-sign-out"></i> Sair</a>
         </nav>
     </div>
     <div id="main">
