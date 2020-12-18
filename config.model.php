@@ -10,7 +10,14 @@ define("CONFIG", [
         "PASSWORD" => "",
         "DB_NAME" => "mydb",
     ],
-    "ENVIRONMENT" => 'production'
+    "ENVIRONMENT" => 'production',
+    "MAIL" => [
+        "CONTACT_MAIL" => 'teste@teste.com',
+        "SMTP_HOST" => 'teste.smtp.com',
+        "SMTP_PORT" => 25,
+        "SMTP_USER" => "test",
+        "SMTP_PASS" => "test"
+    ]
 ]);
 
 if (CONFIG['ENVIRONMENT'] === 'development') {
