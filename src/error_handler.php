@@ -4,7 +4,7 @@
 function setInternalServerError($errno, $errstr =null, $errfile=null, $errline=null){
     http_response_code(500);
     echo "<h1>Erro</h1>";
-var_dump($errno);die;
+    
     if (is_object($errno)){
         $errstr = $errno->getMessage();
         $errfile = $errno->getFile();
