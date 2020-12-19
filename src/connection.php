@@ -8,4 +8,6 @@ $username = CONFIG['DB_CONNECTION']['USERNAME'];
 $password = CONFIG['DB_CONNECTION']['PASSWORD'];
 $db = CONFIG['DB_CONNECTION']['DB_NAME'];
 
-$conn = new mysqli("$server_ip:$server_port", $username, $password, $db);
+$host = empty($server_port) ? $server_ip : "$server_ip:$server_port";
+
+$conn = new mysqli($host, $username, $password, $db);

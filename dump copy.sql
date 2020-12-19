@@ -15,9 +15,9 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- USE `pp_criando_um_site_com_php` ;
 
 -- -----------------------------------------------------
--- Table `pp_criando_um_site_com_php`.`users`
+-- Table `users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pp_criando_um_site_com_php`.`users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(120) NOT NULL,
@@ -29,9 +29,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pp_criando_um_site_com_php`.`pages`
+-- Table `pages`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pp_criando_um_site_com_php`.`pages` (
+CREATE TABLE IF NOT EXISTS `pages` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `url` VARCHAR(255) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `pp_criando_um_site_com_php`.`pages` (
   INDEX `fk_pages_users_idx` (`users_id` ASC) VISIBLE,
   CONSTRAINT `fk_pages_users`
     FOREIGN KEY (`users_id`)
-    REFERENCES `pp_criando_um_site_com_php`.`users` (`id`)
+    REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
