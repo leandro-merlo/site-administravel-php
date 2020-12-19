@@ -22,6 +22,8 @@ $send_contact_message = function($from, $subject, $message) {
     $mail->setFrom($from);
     $mail->addAddress(CONFIG['MAIL']['CONTACT_MAIL']);
     $mail->Subject = $subject;
+    $mail->CharSet = 'UTF-8';
+    $mail->Encoding = 'base64';
     $mail->msgHTML($message); 
     $mail->AltBody = $message;
 
