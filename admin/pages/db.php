@@ -30,10 +30,10 @@ $pages_one = function($id) use ($conn) {
 
 $pages_create = function() use ($conn) {
     $data = get_pages_data('/admin/pages/create');
-    $sql = 'INSERT INTO pages (title, url, body, created_at, updated_at) VALUES (?, ?, ?, NOW(), NOW())';
+    $sql = 'INSERT INTO pages (title, url, body, users_id, created_at, updated_at) VALUES (?, ?, ?, ?, NOW(), NOW())';
     $stmt = $conn->prepare($sql);
 
-    $stmt->bind_param('sss', $data['title'], $data['url'], $data['body']);
+    $stmt->bind_param('sssi', $data['title'], $data['url'], $data['body'], get_user()['id']);
     $stmt->execute();
 
     flash('Registro criado com sucesso!', 'Sucesso', 'success');
