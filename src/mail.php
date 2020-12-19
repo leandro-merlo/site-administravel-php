@@ -1,36 +1,34 @@
 <?php
 
-require_once 'Mail.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require __DIR__ . '/../vendor/PHPMailer/Exception.php';
+require __DIR__ . '/../vendor/PHPMailer/PHPMailer.php';
+require __DIR__ . '/../vendor/PHPMailer/SMTP.php';
 
 $send_contact_message = function($from, $subject, $message) {
 
-    $headers = [
-        'From' =>  $from, 
-        'To' => CONFIG['MAIL']['CONTACT_MAIL'],
-        "Reply-To" =>  $from,
-        "X-Mailer" =>  "PHP" . phpversion(),
-        "Subject" => $subject
-    ];
+    $mail = new PHPMailer;
+    $mail->isSMTP(); 
+    $mail->SMTPDebug = 0;
+    $mail->Host = CONFIG['MAIL']['SMTP_HOST']; 
+    $mail->Port = CONFIG['MAIL']['SMTP_PORT'];
+    $mail->SMTPSecure = 'tls'; 
+    $mail->SMTPAuth = true;
+    $mail->Username = CONFIG['MAIL']['SMTP_USER'];
+    $mail->Password = CONFIG['MAIL']['SMTP_PASS'];
+    $mail->setFrom($from);
+    $mail->addAddress(CONFIG['MAIL']['CONTACT_MAIL']);
+    $mail->Subject = $subject;
+    $mail->msgHTML($message); 
+    $mail->AltBody = $message;
 
-    $host = CONFIG['MAIL']['SMTP_HOST'];
-    $port = CONFIG['MAIL']['SMTP_PORT'];
-    $user = CONFIG['MAIL']['SMTP_USER'];
-    $pass = CONFIG['MAIL']['SMTP_PASS'];
-
-    $smtp = Mail::factory('smtp', [
-        'host' => $host,
-        'port' => $port,
-        'username' => $user,
-        'password' => $pass,
-        'auth' => true
-    ]);
-
-    try {
-        $mail = $smtp->send(CONFIG['MAIL']['CONTACT_MAIL'], $headers, $message);
-        return true;
-    } catch (\Exception $ex) {
+    if(!$mail->send()){
         return false;
+    }else{
+        return true;
     }
-
 
 };
